@@ -1,5 +1,6 @@
 Penjelasan Kode LinkedList
 
+
 Kode di atas membuat struktur data Linked List sederhana yang dapat menambah data di awal, di akhir, dan di posisi tertentu.
 
 1. Class Node
