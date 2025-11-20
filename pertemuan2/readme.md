@@ -1,47 +1,50 @@
-Implementasi LinkedList di Python
-# Implementasi LinkedList di Python
+# **Implementasi Linked List di Python**
 
-Dokumentasi ini menjelaskan implementasi dasar struktur data **Linked List** menggunakan bahasa Python. Linked List terdiri dari node-node yang saling terhubung satu arah melalui pointer `next`.
+Dokumentasi ini menjelaskan implementasi dasar struktur data Linked List menggunakan bahasa Python.
+Linked List tersusun dari node-node yang saling terhubung, di mana setiap node menyimpan data dan alamat node berikutnya.
 
----
+##  **1. Class Node**
 
-## 1. Class Node
+Class Node digunakan untuk membuat elemen tunggal dalam Linked List.
+###  **Membuat Stack**
 
 ```python
 class Node:
     def __init__(self, data=None, pointer=None):
         self.data = data
         self.next = pointer
+```
+Setiap node menyimpan dua bagian utama:
 
+data ➝ nilai yang disimpan
 
-Class Node merepresentasikan satu elemen dalam Linked List.
-Setiap node menyimpan dua informasi:
+next ➝ penunjuk ke node berikutnya
+###  **2.Class LinkedList**
+Class LinkedList digunakan sebagai wadah yang menyimpan pointer ke node pertama.
 
-data → nilai yang disimpan
-
-next → penunjuk ke node berikutnya
-
-2. Class LinkedList
+```python
 class LinkedList:
     def __init__(self):
         self.head = None
 
+```
+Saat LinkedList dibuat, head bernilai None yang berarti list masih kosong.
 
-Saat objek LinkedList dibuat, bagian head masih kosong sehingga bernilai None.
-
-3. Menambah Data di Awal List — insert_at_first()
+###  **3. Menambah Data di Awal (insert_at_first)**
+```python
 def insert_at_first(self, data):
     node = Node(data, self.head)
     self.head = node
 
+```
+Penjelasan:
 
-Fungsi ini menambahkan data di bagian paling depan list dengan:
+Membuat node baru yang menunjuk ke node yang sebelumnya menjadi head
 
-Membuat node baru yang menunjuk ke head lama
+Node baru dijadikan sebagai head yang baru
+###  **4. Menambah Data di Akhir (insert_at_last)**
 
-Menjadikan node tersebut sebagai head baru
-
-4. Menambah Data di Akhir — insert_at_last()
+```python
 def insert_at_last(self, data):
     if self.head is None:
         self.head = Node(data)
@@ -53,11 +56,15 @@ def insert_at_last(self, data):
         node = Node(data)
         node_sekarang.next = node
 
+```
+Penjelasan:
 
-Jika list kosong → data langsung jadi head.
-Jika tidak kosong → program menelusuri hingga node terakhir lalu menambahkan node baru di bagian akhir.
+Jika list kosong → data langsung menjadi head
 
-5. Menambah Data pada Posisi Tertentu — insert_at()
+Jika tidak kosong → program menelusuri hingga node terakhir lalu menambahkan node baru di bagian akhir
+
+###  **5. Menambah Data di Posisi Tertentu (insert_at)**
+```python
 def insert_at(self, index, data):
     if index < 0 or index > self.length() - 1:
         print("indeks tidak valid")
@@ -74,16 +81,17 @@ def insert_at(self, index, data):
         node = Node(data, node_sekarang.next)
         node_sekarang.next = node
 
+```
+Penjelasan:
 
-Langkah fungsi:
+Mengecek apakah index valid
 
-Mengecek validitas index
+Jika index = 0 ➝ tambahkan di awal
 
-Jika index = 0 → masukkan ke depan
+Jika index > 0 ➝ telusuri node hingga posisi yang dituju lalu sisipkan data
+###  **6. Menampilkan Isi List (print)**
 
-Jika index selain 0 → telusuri hingga posisi yang dituju dan sisipkan node baru
-
-6. Menampilkan Isi List — print()
+```python
 def print(self):
     if self.head is None:
         print("data kosong")
@@ -97,11 +105,13 @@ def print(self):
         
         print(text_print)
 
+```
+Penjelasan:
+Jika list kosong ➝ tampilkan "data kosong"
+Jika ada data ➝ tampilkan seluruh isi node secara berurutan.
+###  **7. Menghitung Jumlah Node (length)**
 
-Jika list tidak punya data → tampilkan "data kosong".
-Jika ada data → tampilkan seluruh node berurutan dari depan hingga akhir.
-
-7. Menghitung Jumlah Node — length()
+```python
 def length(self):
     urutan = 0
     data_sekarang = self.head
@@ -112,10 +122,12 @@ def length(self):
 
     return urutan
 
+```
+Penjelasan:
+Fungsi ini menghitung jumlah elemen dalam list dengan menelusuri node satu per satu.
+###  **8. Contoh Penggunaan Program**
 
-Fungsi ini menghitung total elemen pada Linked List dengan menelusuri node satu per satu.
-
-8. Contoh Penggunaan Program
+```python
 ll = LinkedList()
 
 ll.insert_at_first("jeruk")
@@ -127,5 +139,31 @@ ll.insert_at(2, "durian")
 ll.print()
 print(ll.length())
 
+```
 
-Output berisi daftar data dari linked list dan jumlah nodenya.
+**Output:**
+
+```python
+manggis→mangga→durian→jeruk→apel→
+5
+```
+
+**Ringkasan Output Program**
+
+```python
+manggis→mangga→durian→jeruk→apel→
+5
+
+```
+Struktur Data yang Digunakan
+
+Node ➝ elemen penyusun Linked List
+
+next ➝ pointer ke node berikutnya
+
+head ➝ node pertama
+
+while ➝ menelusuri node
+
+None ➝ penanda akhir list
+
