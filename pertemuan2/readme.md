@@ -1,17 +1,21 @@
-Penjelasan Kode LinkedList
+Implementasi LinkedList di Python
+# Implementasi LinkedList di Python
 
+Dokumentasi ini menjelaskan implementasi dasar struktur data **Linked List** menggunakan bahasa Python. Linked List terdiri dari node-node yang saling terhubung satu arah melalui pointer `next`.
 
-Kode di atas membuat struktur data Linked List sederhana yang dapat menambah data di awal, di akhir, dan di posisi tertentu.
+---
 
-1. Class Node
+## 1. Class Node
+
+```python
 class Node:
     def __init__(self, data=None, pointer=None):
         self.data = data
         self.next = pointer
 
 
-Class ini digunakan untuk membuat elemen di dalam linked list.
-Setiap node menyimpan dua hal:
+Class Node merepresentasikan satu elemen dalam Linked List.
+Setiap node menyimpan dua informasi:
 
 data → nilai yang disimpan
 
@@ -23,17 +27,21 @@ class LinkedList:
         self.head = None
 
 
-Saat linked list baru dibuat, kondisinya masih kosong, sehingga head diset menjadi None.
+Saat objek LinkedList dibuat, bagian head masih kosong sehingga bernilai None.
 
-3. Menambah data di awal — insert_at_first()
+3. Menambah Data di Awal List — insert_at_first()
 def insert_at_first(self, data):
     node = Node(data, self.head)
     self.head = node
 
 
-Fungsi ini membuat node baru yang langsung mengarah ke head lama. Setelah itu node baru dijadikan head yang baru.
+Fungsi ini menambahkan data di bagian paling depan list dengan:
 
-4. Menambah data di akhir — insert_at_last()
+Membuat node baru yang menunjuk ke head lama
+
+Menjadikan node tersebut sebagai head baru
+
+4. Menambah Data di Akhir — insert_at_last()
 def insert_at_last(self, data):
     if self.head is None:
         self.head = Node(data)
@@ -46,10 +54,10 @@ def insert_at_last(self, data):
         node_sekarang.next = node
 
 
-Jika list kosong, data langsung jadi head.
-Jika sudah ada isi, program mencari node terakhir lalu menyambungkan node baru di bagian ujung.
+Jika list kosong → data langsung jadi head.
+Jika tidak kosong → program menelusuri hingga node terakhir lalu menambahkan node baru di bagian akhir.
 
-5. Menambah data di posisi tertentu — insert_at()
+5. Menambah Data pada Posisi Tertentu — insert_at()
 def insert_at(self, index, data):
     if index < 0 or index > self.length() - 1:
         print("indeks tidak valid")
@@ -67,15 +75,15 @@ def insert_at(self, index, data):
         node_sekarang.next = node
 
 
-Fungsi ini digunakan untuk menyisipkan data di posisi tertentu.
+Langkah fungsi:
 
-Jika indeks tidak sesuai, program menolak.
+Mengecek validitas index
 
-Jika indeks 0, data ditaruh di depan.
+Jika index = 0 → masukkan ke depan
 
-Untuk posisi lainnya, program bergerak sampai node sebelum posisi yang dituju dan menambahkan node baru di tempat tersebut.
+Jika index selain 0 → telusuri hingga posisi yang dituju dan sisipkan node baru
 
-6. Mencetak isi list — print()
+6. Menampilkan Isi List — print()
 def print(self):
     if self.head is None:
         print("data kosong")
@@ -90,10 +98,10 @@ def print(self):
         print(text_print)
 
 
-Jika list kosong, muncul tulisan “data kosong”.
-Jika tidak kosong, program menampilkan semua data dari awal sampai akhir.
+Jika list tidak punya data → tampilkan "data kosong".
+Jika ada data → tampilkan seluruh node berurutan dari depan hingga akhir.
 
-7. Menghitung jumlah node — length()
+7. Menghitung Jumlah Node — length()
 def length(self):
     urutan = 0
     data_sekarang = self.head
@@ -105,10 +113,11 @@ def length(self):
     return urutan
 
 
-Fungsi ini menghitung jumlah node dengan cara menelusuri list dari awal hingga habis.
+Fungsi ini menghitung total elemen pada Linked List dengan menelusuri node satu per satu.
 
-8. Pemanggilan Program
+8. Contoh Penggunaan Program
 ll = LinkedList()
+
 ll.insert_at_first("jeruk")
 ll.insert_at_first("mangga")
 ll.insert_at_first("manggis")
@@ -119,4 +128,4 @@ ll.print()
 print(ll.length())
 
 
-Program membuat linked list, mengisi beberapa data ke dalamnya, kemudian mencetak isi list dan menghitung jumlah elemennya.
+Output berisi daftar data dari linked list dan jumlah nodenya.
